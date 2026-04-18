@@ -33,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let mainChartInst = null;
 
+    // Gallery Elements
+    const mainSubjectImg = document.getElementById('main-subject-image');
+    const mainImgContainer = document.getElementById('main-image-container');
+    const thumbContainer = document.getElementById('thumbnail-container');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+
     // Helper for Recommendation Score Colors (0=Red, 100=Green)
     const getScoreColor = (score) => {
         return `hsl(${score * 1.2}, 75%, 42%)`;
@@ -444,6 +455,90 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCompsToggle.addEventListener('click', () => {
         compsContent.classList.toggle('hidden');
         compsChevron.classList.toggle('rotate-180');
+    });
+
+    // Gallery Logic
+    const subjectImages = [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+    ];
+    let currentGalleryIndex = 0;
+
+    // Initialize Thumbnails
+    subjectImages.forEach((src, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = `aspect-square rounded-md overflow-hidden cursor-pointer border-2 transition-all ${idx === 0 ? 'border-primary shadow-sm scale-100 opacity-100' : 'border-transparent hover:border-primary/50 opacity-70 hover:opacity-100'}`;
+        thumb.innerHTML = `<img src="${src}" class="w-full h-full object-cover pointer-events-none">`;
+        thumb.addEventListener('click', () => {
+            currentGalleryIndex = idx;
+            updateGallery();
+        });
+        thumbContainer.appendChild(thumb);
+    });
+
+    const updateGallery = () => {
+        mainSubjectImg.src = subjectImages[currentGalleryIndex];
+        // Update thumbnail borders visually
+        Array.from(thumbContainer.children).forEach((thumb, idx) => {
+            if(idx === currentGalleryIndex) {
+                thumb.className = "aspect-square rounded-md overflow-hidden cursor-pointer border-2 transition-all border-primary shadow-sm scale-100 opacity-100";
+            } else {
+                thumb.className = "aspect-square rounded-md overflow-hidden cursor-pointer border-2 transition-all border-transparent hover:border-primary/50 opacity-70 hover:opacity-100";
+            }
+        });
+    };
+
+    const openLightbox = () => {
+        lightboxImg.src = subjectImages[currentGalleryIndex];
+        lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${subjectImages.length}`;
+        lightboxModal.classList.remove('hidden');
+        void lightboxModal.offsetWidth; // trigger reflow
+        lightboxModal.classList.remove('opacity-0');
+        // Initialize lucide icons for the new modal if needed
+        lucide.createIcons();
+    };
+
+    const closeLightbox = () => {
+        lightboxModal.classList.add('opacity-0');
+        setTimeout(() => lightboxModal.classList.add('hidden'), 300);
+    };
+
+    const nextLightbox = () => {
+        currentGalleryIndex = (currentGalleryIndex + 1) % subjectImages.length;
+        lightboxImg.src = subjectImages[currentGalleryIndex];
+        lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${subjectImages.length}`;
+        updateGallery();
+    };
+
+    const prevLightbox = () => {
+        currentGalleryIndex = (currentGalleryIndex - 1 + subjectImages.length) % subjectImages.length;
+        lightboxImg.src = subjectImages[currentGalleryIndex];
+        lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${subjectImages.length}`;
+        updateGallery();
+    };
+
+    mainImgContainer.addEventListener('click', openLightbox);
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextLightbox(); });
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightbox(); });
+    
+    // Close on background click
+    lightboxModal.addEventListener('click', (e) => {
+        if(e.target === lightboxModal || (e.target.parentElement === lightboxModal && e.target.tagName !== 'BUTTON')) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+        if (!lightboxModal.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+        }
     });
 
     // Initial load setup (don't render chart until visible to avoid size issues)

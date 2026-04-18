@@ -207,10 +207,19 @@
                 <!-- Property Overview & Top Graph -->
                 <div class="grid lg:grid-cols-12 gap-6 mb-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     
-                    <!-- 1. Subject Image -->
-                    <div class="lg:col-span-3 aspect-[4/3] rounded-xl overflow-hidden shadow-inner relative group">
-                        <img src="images/austin_fixer_upper.png" alt="Texas Fixer Upper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-md border border-white/10">Subject Property</div>
+                    <!-- 1. Subject Image & Gallery -->
+                    <div class="lg:col-span-3 flex flex-col gap-2">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden shadow-inner relative group cursor-pointer" id="main-image-container">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" id="main-subject-image" alt="Texas Fixer Upper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-md border border-white/10">Subject Property</div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i data-lucide="maximize-2" class="text-white w-10 h-10 drop-shadow-lg"></i>
+                            </div>
+                        </div>
+                        <!-- Thumbnails -->
+                        <div class="grid grid-cols-5 gap-2" id="thumbnail-container">
+                            <!-- Populated by JS -->
+                        </div>
                     </div>
 
                     <!-- 2. Property Info & Metrics -->
@@ -392,6 +401,25 @@
             </div>
         </section>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <button id="lightbox-prev" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-2 z-50">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+        <button id="lightbox-next" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-2 z-50">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+        <div class="max-w-6xl w-full h-[85vh] px-12 flex items-center justify-center relative select-none">
+            <img id="lightbox-img" src="" alt="Expanded View" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300">
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 font-medium tracking-widest text-sm" id="lightbox-counter">
+            1 / 5
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
