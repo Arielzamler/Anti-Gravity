@@ -420,6 +420,14 @@ document.addEventListener("DOMContentLoaded", () => {
         void dealRadarView.offsetWidth;
         dealRadarView.classList.remove('opacity-0');
         dealRadarView.classList.add('opacity-100');
+
+        // Fix Leaflet sizing issue when container becomes visible
+        if (window.radarMap) {
+            setTimeout(() => {
+                window.radarMap.invalidateSize();
+                window.radarMap.setView([39.8283, -98.5795], 4);
+            }, 100);
+        }
     });
 
     // Optional: Clicking the logo returns to landing
