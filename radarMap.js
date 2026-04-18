@@ -28,11 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Opportunities data (Lat, Lng)
     let opportunities = [
-        { id: "tx-1", state: "Texas", coords: [30.2672, -97.7431], profit: "+$43k Net", price: "$110,000", beds: 3, baths: 2, sqft: "1,210", address: "1248 Maple Ave", city: "Austin, TX", img: "images/comp_1.png" },
-        { id: "tx-2", state: "Texas", coords: [32.7767, -96.7970], profit: "+$28k Net", price: "$130,000", beds: 4, baths: 2, sqft: "1,450", address: "802 Elm St", city: "Dallas, TX", img: "images/comp_2.png" },
-        { id: "tx-3", state: "Texas", coords: [29.7604, -95.3698], profit: "+$19k Net", price: "$150,000", beds: 3, baths: 2, sqft: "1,310", address: "405 Main St", city: "Houston, TX", img: "images/comp_3.png" },
-        { id: "oh-1", state: "Ohio", coords: [39.9612, -82.9988], profit: "+$35k Net", price: "$145,000", beds: 3, baths: 1.5, sqft: "1,180", address: "1302 Oak St", city: "Columbus, OH", img: "images/comp_2.png" },
-        { id: "fl-1", state: "Florida", coords: [28.5383, -81.3792], profit: "+$21k Net", price: "$125,000", beds: 3, baths: 2, sqft: "1,340", address: "1190 Pine Rd", city: "Orlando, FL", img: "images/comp_3.png" }
+        { id: "tx-1", state: "Texas", coords: [30.2672, -97.7431], profit: "+$43k | 19% ROI", price: "$192,700", rehab: "$39,300", arv: "$275,000", beds: 3, baths: 2, sqft: "1,210", address: "1248 Maple Ave", city: "Austin, TX", img: "images/comp_1.png" },
+        { id: "tx-2", state: "Texas", coords: [32.7767, -96.7970], profit: "+$28k | 13% ROI", price: "$167,000", rehab: "$45,000", arv: "$240,000", beds: 4, baths: 2, sqft: "1,450", address: "802 Elm St", city: "Dallas, TX", img: "images/comp_2.png" },
+        { id: "tx-3", state: "Texas", coords: [29.7604, -95.3698], profit: "+$19k | 8% ROI", price: "$191,000", rehab: "$55,000", arv: "$265,000", beds: 3, baths: 2, sqft: "1,310", address: "405 Main St", city: "Houston, TX", img: "images/comp_3.png" },
+        { id: "oh-1", state: "Ohio", coords: [39.9612, -82.9988], profit: "+$35k | 17% ROI", price: "$170,000", rehab: "$35,000", arv: "$240,000", beds: 3, baths: 1.5, sqft: "1,180", address: "1302 Oak St", city: "Columbus, OH", img: "images/comp_2.png" },
+        { id: "fl-1", state: "Florida", coords: [28.5383, -81.3792], profit: "+$21k | 9% ROI", price: "$196,000", rehab: "$48,000", arv: "$265,000", beds: 3, baths: 2, sqft: "1,340", address: "1190 Pine Rd", city: "Orlando, FL", img: "images/comp_3.png" }
     ];
 
     let markers = [];
@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("prop-modal-baths").textContent = d.baths;
         document.getElementById("prop-modal-sqft").textContent = d.sqft;
         document.getElementById("prop-modal-price").textContent = d.price;
+        document.getElementById("prop-modal-rehab").textContent = d.rehab;
+        document.getElementById("prop-modal-arv").textContent = d.arv;
 
         modal.classList.remove("translate-y-[120%]");
     }
