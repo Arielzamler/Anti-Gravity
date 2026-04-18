@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehab-AI Predictor – Ohio Edition</title>
+    <title>Rehab-AI Predictor – Texas Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-                    <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary text-sm font-semibold mb-4 shadow-sm border border-blue-200">Ohio Edition Now Live</span>
+                    <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary text-sm font-semibold mb-4 shadow-sm border border-blue-200">Texas Edition Now Live</span>
                     
                     <h1 class="text-5xl md:text-6xl font-extrabold text-primary tracking-tight mb-4 leading-tight">
                         Stop Guessing, Start Flipping.
@@ -135,13 +135,13 @@
 
                     <div class="max-w-2xl mx-auto bg-white p-2 rounded-2xl shadow-xl flex items-center border border-slate-100 relative z-10 transition-transform hover:scale-[1.02] duration-300">
                         <i data-lucide="search" class="text-slate-400 ml-4 mr-2 w-6 h-6"></i>
-                        <input type="text" placeholder="Paste a Zillow/Redfin link or enter address (Ohio only)..." class="flex-grow py-3 px-2 outline-none text-lg text-slate-700 bg-transparent w-full placeholder:text-slate-400">
+                        <input type="text" placeholder="Paste a Zillow/Redfin link or enter address (Texas only)..." class="flex-grow py-3 px-2 outline-none text-lg text-slate-700 bg-transparent w-full placeholder:text-slate-400">
                         <button class="bg-primary hover:bg-brand-600 text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md ml-2 shrink-0">Analyze</button>
                     </div>
                     
                     <div class="mt-8 relative z-10">
                         <button id="btn-demo" class="group inline-flex items-center gap-2 text-primary font-medium hover:text-brand-600 transition-colors bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/10 hover:bg-white hover:shadow-sm">
-                            <span>Try with a random Ohio property (Demo)</span>
+                            <span>Try with a random Texas property (Demo)</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
@@ -209,7 +209,7 @@
                     
                     <!-- 1. Subject Image -->
                     <div class="lg:col-span-3 aspect-[4/3] rounded-xl overflow-hidden shadow-inner relative group">
-                        <img src="images/ohio_fixer_upper.png" alt="Ohio Fixer Upper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <img src="images/austin_fixer_upper.png" alt="Texas Fixer Upper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-md border border-white/10">Subject Property</div>
                     </div>
 
@@ -217,17 +217,17 @@
                     <div class="lg:col-span-4 flex flex-col justify-center border-r border-slate-100 pr-6">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="bg-brand-50 text-brand-600 border border-brand-100 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">Single Family</span>
-                            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold px-2.5 py-1 rounded">3 Beds • 2 Baths • 1,450 sqft</span>
+                            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold px-2.5 py-1 rounded">3 Beds • 2 Baths • 1,200 sqft</span>
                         </div>
-                        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">1234 Maple Ave</h2>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">6015 Carnation Ter</h2>
                         <p class="text-lg text-slate-500 flex items-center mb-6 font-medium">
-                            <i data-lucide="map-pin" class="w-5 h-5 mr-1.5 text-slate-400"></i> Cleveland, OH 44113
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-1.5 text-slate-400"></i> Austin, TX 78741
                         </p>
                         
                         <div class="grid grid-cols-2 gap-4">
                             <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
                                 <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Current Price</p>
-                                <p class="text-xl font-bold text-slate-800">$110,000</p>
+                                <p class="text-xl font-bold text-slate-800">$181,000</p>
                             </div>
                             <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm transition-colors duration-500" id="metric-rehab">
                                 <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Est. Rehab</p>
@@ -235,7 +235,7 @@
                             </div>
                             <div class="p-3 rounded-xl bg-blue-50 border border-blue-100">
                                 <p class="text-xs font-bold text-blue-500 uppercase tracking-wider mb-1">Projected ARV</p>
-                                <p class="text-xl font-bold text-blue-900">$195,000</p>
+                                <p class="text-xl font-bold text-blue-900">$275,000</p>
                             </div>
                             <div class="p-3 rounded-xl bg-green-50 border border-green-200 relative overflow-hidden group transition-all duration-500" id="metric-profit">
                                 <p class="text-xs font-bold text-green-700 uppercase tracking-wider mb-1 relative z-10">Net Profit</p>

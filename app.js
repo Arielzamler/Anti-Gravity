@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inspectionExtraCost = inspectionFindings.reduce((acc, curr) => acc + curr.cost, 0); 
     const totalRehabCost = baseRehabCost + inspectionExtraCost; 
 
-    const ARV = 195000;
-    const PurchasePrice = 110000;
+    const ARV = 275000;
+    const PurchasePrice = 181000;
 
     const baseProfit = ARV - PurchasePrice - baseRehabCost; 
     const finalProfit = ARV - PurchasePrice - totalRehabCost; 

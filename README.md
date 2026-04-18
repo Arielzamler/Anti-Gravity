@@ -1,7 +1,7 @@
-# Rehab-AI Predictor – Ohio Edition
+# Rehab-AI Predictor – Texas Edition
 
 ## Project Overview
-Rehab-AI Predictor is a data-driven real estate platform designed to help property investors and house flippers maximize their Returns on Investment (ROI). By eliminating guesswork from the property renovation process, Rehab-AI provides actionable, hyper-local insights tailored specifically to the Ohio real estate market.
+Rehab-AI Predictor is a data-driven real estate platform designed to help property investors and house flippers maximize their Returns on Investment (ROI). By eliminating guesswork from the property renovation process, Rehab-AI provides actionable, hyper-local insights tailored specifically to the Texas real estate market.
 
 ## Main Purpose
 The core objective of Rehab-AI Predictor is to generate an instant, 100% data-driven **Scope of Work (SOW)** and **Rehab Budget** for any given property. It serves as a comprehensive evaluation tool that bridges the gap between a property's current state and its maximum After Repair Value (ARV).
