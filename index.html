@@ -70,9 +70,10 @@
                 <i data-lucide="home" class="text-primary w-8 h-8"></i>
                 <span class="font-bold text-2xl text-primary tracking-tight">Rehab-AI</span>
             </div>
-            <nav class="hidden md:flex gap-8 font-medium text-slate-600 items-center">
-                <a href="#" id="nav-deal-radar" class="text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1.5"><i data-lucide="map" class="w-4 h-4"></i> Deal Radar</a>
-                <a href="#" class="hover:text-primary transition-colors">How it works</a>
+            <nav class="hidden md:flex gap-8 font-medium text-slate-500 items-center">
+                <a href="#" id="nav-analyze-deal" class="nav-item text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1.5 transition-colors"><i data-lucide="bar-chart-2" class="w-4 h-4"></i> Analyze a Deal</a>
+                <a href="#" id="nav-deal-radar" class="nav-item hover:text-primary transition-colors flex items-center gap-1.5 pb-1 border-b-2 border-transparent"><i data-lucide="map" class="w-4 h-4"></i> Deal Radar</a>
+                <a href="#" id="nav-how-it-works" class="nav-item hover:text-primary transition-colors flex items-center gap-1.5 pb-1 border-b-2 border-transparent"><i data-lucide="info" class="w-4 h-4"></i> How it works</a>
                 <a href="#" class="hover:text-primary transition-colors">Pricing</a>
                 <a href="#" class="hover:text-primary transition-colors">Contact</a>
             </nav>
@@ -569,6 +570,76 @@
                             <div class="text-white font-bold text-sm" id="prop-modal-arv">$275,000</div>
                         </div>
                         <button class="w-full mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg transition-colors shadow-[0_0_15px_rgba(8,145,178,0.4)] text-sm">View Full SOW Analysis</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works View -->
+        <section id="how-it-works-view" class="absolute inset-0 w-full h-full overflow-y-auto bg-slate-950 hidden opacity-0 transition-opacity duration-500 ease-in-out text-slate-300">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight"><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Assess. Predict. Profit.</span></h2>
+                    <p class="text-xl text-slate-400 max-w-3xl mx-auto">Rehab-AI uses advanced computer vision and local market data to automate the entire fix-and-flip analysis process. What used to take hours now takes seconds.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-colors shadow-xl relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-slate-700 text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="camera" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">1. AI Vision Analysis</h3>
+                        <p class="text-slate-400 leading-relaxed">Upload property photos or let our engine scan Zillow/Redfin listings. Our computer vision models instantly detect cosmetic damages, structural issues, and outdated materials.</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-blue-500/50 transition-colors shadow-xl relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-slate-700 text-blue-400 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="calculator" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">2. Instant Estimations</h3>
+                        <p class="text-slate-400 leading-relaxed">We cross-reference detected issues with hyper-local labor and material costs to generate highly accurate, itemized rehab estimates broken down by category.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-green-500/50 transition-colors shadow-xl relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-b from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-slate-700 text-green-400 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="line-chart" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">3. Profit Prediction</h3>
+                        <p class="text-slate-400 leading-relaxed">We automatically pull the best local comparables (Comps) to calculate the After Repair Value (ARV). Deducting the rehab cost and asking price reveals your true ROI.</p>
+                    </div>
+                </div>
+
+                <div class="mt-20 bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-white mb-4">Stop guessing on rehab costs.</h2>
+                        <p class="text-slate-400 text-lg mb-6 leading-relaxed">Whether you are wholesaling, flipping, or buying rentals, estimating repair costs accurately is the hardest part of real estate investing. Rehab-AI gives you a contractor in your pocket.</p>
+                        <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(8,145,178,0.4)] transition-all">Start Analyzing Free</button>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="grid grid-cols-2 gap-4 w-full">
+                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center">
+                                <div class="text-4xl font-extrabold text-white mb-1">98%</div>
+                                <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Accuracy vs GCs</div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center">
+                                <div class="text-4xl font-extrabold text-white mb-1">12s</div>
+                                <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Avg Analysis Time</div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center">
+                                <div class="text-4xl font-extrabold text-white mb-1">10k+</div>
+                                <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Deals Analyzed</div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center">
+                                <div class="text-4xl font-extrabold text-white mb-1">50</div>
+                                <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">States Covered</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

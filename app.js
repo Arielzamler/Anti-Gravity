@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadingView = document.getElementById('loading-view');
     const dashboardView = document.getElementById('dashboard-view');
     const dealRadarView = document.getElementById('deal-radar-view');
+    const howItWorksView = document.getElementById('how-it-works-view');
+    
+    const navAnalyzeDeal = document.getElementById('nav-analyze-deal');
     const navDealRadar = document.getElementById('nav-deal-radar');
+    const navHowItWorks = document.getElementById('nav-how-it-works');
+    
     const btnDemo = document.getElementById('btn-demo');
     const btnBack = document.getElementById('btn-back');
     const loadingText = document.getElementById('loading-text');
@@ -406,37 +411,100 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 500);
     });
 
-    navDealRadar.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Hide other views
-        landingView.classList.add('hidden', 'opacity-0');
-        landingView.classList.remove('opacity-100');
-        dashboardView.classList.add('hidden', 'opacity-0');
-        dashboardView.classList.remove('opacity-100');
-        
-        // Show Deal Radar View
-        dealRadarView.classList.remove('hidden');
-        void dealRadarView.offsetWidth;
-        dealRadarView.classList.remove('opacity-0');
-        dealRadarView.classList.add('opacity-100');
-
-        // Fix Leaflet sizing issue when container becomes visible
-        if (window.radarMap) {
-            setTimeout(() => {
-                window.radarMap.invalidateSize();
-                window.radarMap.setView([39.8283, -98.5795], 4);
-            }, 100);
+    function setActiveNav(activeId) {
+        document.querySelectorAll('nav .nav-item').forEach(el => {
+            el.classList.remove('text-primary', 'font-bold', 'border-primary');
+            el.classList.add('border-transparent', 'hover:text-primary');
+        });
+        const active = document.getElementById(activeId);
+        if (active) {
+            active.classList.add('text-primary', 'font-bold', 'border-primary');
+            active.classList.remove('border-transparent', 'hover:text-primary');
         }
-    });
+    }
+
+    if (navAnalyzeDeal) {
+        navAnalyzeDeal.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveNav('nav-analyze-deal');
+            
+            // Hide other views
+            dealRadarView.classList.add('hidden', 'opacity-0');
+            dealRadarView.classList.remove('opacity-100');
+            howItWorksView.classList.add('hidden', 'opacity-0');
+            howItWorksView.classList.remove('opacity-100');
+            dashboardView.classList.add('hidden', 'opacity-0');
+            dashboardView.classList.remove('opacity-100');
+            
+            // Show landing view
+            landingView.classList.remove('hidden');
+            void landingView.offsetWidth;
+            landingView.classList.remove('opacity-0');
+            landingView.classList.add('opacity-100');
+        });
+    }
+
+    if (navDealRadar) {
+        navDealRadar.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveNav('nav-deal-radar');
+            
+            // Hide other views
+            landingView.classList.add('hidden', 'opacity-0');
+            landingView.classList.remove('opacity-100');
+            dashboardView.classList.add('hidden', 'opacity-0');
+            dashboardView.classList.remove('opacity-100');
+            howItWorksView.classList.add('hidden', 'opacity-0');
+            howItWorksView.classList.remove('opacity-100');
+            
+            // Show Deal Radar View
+            dealRadarView.classList.remove('hidden');
+            void dealRadarView.offsetWidth;
+            dealRadarView.classList.remove('opacity-0');
+            dealRadarView.classList.add('opacity-100');
+
+            // Fix Leaflet sizing issue when container becomes visible
+            if (window.radarMap) {
+                setTimeout(() => {
+                    window.radarMap.invalidateSize();
+                    window.radarMap.setView([39.8283, -98.5795], 4);
+                }, 100);
+            }
+        });
+    }
+
+    if (navHowItWorks) {
+        navHowItWorks.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveNav('nav-how-it-works');
+            
+            // Hide other views
+            landingView.classList.add('hidden', 'opacity-0');
+            landingView.classList.remove('opacity-100');
+            dashboardView.classList.add('hidden', 'opacity-0');
+            dashboardView.classList.remove('opacity-100');
+            dealRadarView.classList.add('hidden', 'opacity-0');
+            dealRadarView.classList.remove('opacity-100');
+            
+            // Show How It Works View
+            howItWorksView.classList.remove('hidden');
+            void howItWorksView.offsetWidth;
+            howItWorksView.classList.remove('opacity-0');
+            howItWorksView.classList.add('opacity-100');
+        });
+    }
 
     // Optional: Clicking the logo returns to landing
     const logoArea = document.querySelector('header .gap-2');
     if (logoArea) {
         logoArea.classList.add('cursor-pointer');
         logoArea.addEventListener('click', () => {
+            setActiveNav('nav-analyze-deal');
+            
             dealRadarView.classList.add('hidden', 'opacity-0');
             dealRadarView.classList.remove('opacity-100');
+            howItWorksView.classList.add('hidden', 'opacity-0');
+            howItWorksView.classList.remove('opacity-100');
             dashboardView.classList.add('hidden', 'opacity-0');
             dashboardView.classList.remove('opacity-100');
             
