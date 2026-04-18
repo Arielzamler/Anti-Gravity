@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehab-AI Predictor – Ohio Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js DataLabels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1a365d',
+                        success: '#38a169',
+                        brand: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#1a365d',
+                            600: '#152c4d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="home" class="text-primary w-8 h-8"></i>
+                <span class="font-bold text-2xl text-primary tracking-tight">Rehab-AI</span>
+            </div>
+            <nav class="hidden md:flex gap-8 font-medium text-slate-600">
+                <a href="#" class="hover:text-primary transition-colors">How it works</a>
+                <a href="#" class="hover:text-primary transition-colors">Pricing</a>
+                <a href="#" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+            <div>
+                <button class="text-primary font-medium px-4 py-2 hover:bg-slate-50 rounded-lg transition-colors mr-2">Login</button>
+                <button class="bg-primary text-white font-medium px-5 py-2.5 rounded-lg shadow-md hover:bg-brand-600 transition-colors">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow relative overflow-hidden">
+        <!-- Landing Page View -->
+        <section id="landing-view" class="absolute inset-0 w-full h-full overflow-y-auto transition-opacity duration-500 ease-in-out">
+            
+            <!-- Hero Section -->
+            <div class="relative bg-brand-50 pt-16 pb-16 overflow-hidden">
+                <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full overflow-hidden pointer-events-none">
+                    <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[70%] rounded-full bg-blue-100/50 blur-3xl"></div>
+                    <div class="absolute bottom-[10%] -left-[10%] w-[40%] h-[60%] rounded-full bg-green-100/50 blur-3xl"></div>
+                </div>
+
+                <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                    <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary text-sm font-semibold mb-4 shadow-sm border border-blue-200">Ohio Edition Now Live</span>
+                    
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-primary tracking-tight mb-4 leading-tight">
+                        Stop Guessing, Start Flipping.
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500 mb-8">
+                        Get a 100% Data-Driven Rehab Plan in Seconds.
+                    </h2>
+
+                    <!-- Compact Process Illustration -->
+                    <div class="relative w-full max-w-2xl mx-auto h-[320px] flex items-center justify-center overflow-visible mb-10">
+                        <!-- Central Image -->
+                        <div class="relative z-10 w-40 h-40 rounded-full border-4 border-white shadow-xl overflow-hidden group">
+                            <img src="images/ohio_fixer_upper.png" alt="Old Property" class="w-full h-full object-cover">
+                            <div class="absolute bottom-2 left-0 right-0 text-center">
+                                <span class="bg-white/95 backdrop-blur text-slate-800 text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm border border-slate-100">Current State</span>
+                            </div>
+                        </div>
+
+                        <!-- SVG Arrows -->
+                        <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none hidden md:block" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice">
+                            <defs>
+                                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1" />
+                                </marker>
+                            </defs>
+                            <path d="M 400 160 L 220 80" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
+                            <path d="M 400 160 L 580 80" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
+                            <path d="M 400 160 L 220 240" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
+                            <path d="M 400 160 L 580 240" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
+                        </svg>
+
+                        <!-- Cards -->
+                        <div class="absolute top-4 left-0 md:left-8 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40 z-10 transform hover:-translate-y-1 transition-transform">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1 text-center">Kitchen Remodel</h4>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-1.5">
+                                <p class="text-sm font-extrabold text-success">+$15k</p>
+                                <span class="bg-green-50 text-success text-[10px] font-bold px-1.5 py-0.5 rounded">↑ 12%</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-0 md:right-8 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40 z-10 transform hover:-translate-y-1 transition-transform">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1 text-center">Master Bath Add</h4>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-1.5">
+                                <p class="text-sm font-extrabold text-success">+$12k</p>
+                                <span class="bg-green-50 text-success text-[10px] font-bold px-1.5 py-0.5 rounded">↑ 9%</span>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 left-0 md:left-8 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40 z-10 transform hover:-translate-y-1 transition-transform">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1 text-center">Curb Appeal</h4>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-1.5">
+                                <p class="text-sm font-extrabold text-success">+$5k</p>
+                                <span class="bg-green-50 text-success text-[10px] font-bold px-1.5 py-0.5 rounded">↑ 4%</span>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-0 md:right-8 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40 z-10 transform hover:-translate-y-1 transition-transform">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1 text-center">Hardwood Floors</h4>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-1.5">
+                                <p class="text-sm font-extrabold text-success">+$3.2k</p>
+                                <span class="bg-green-50 text-success text-[10px] font-bold px-1.5 py-0.5 rounded">↑ 2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="max-w-2xl mx-auto bg-white p-2 rounded-2xl shadow-xl flex items-center border border-slate-100 relative z-10 transition-transform hover:scale-[1.02] duration-300">
+                        <i data-lucide="search" class="text-slate-400 ml-4 mr-2 w-6 h-6"></i>
+                        <input type="text" placeholder="Paste a Zillow/Redfin link or enter address (Ohio only)..." class="flex-grow py-3 px-2 outline-none text-lg text-slate-700 bg-transparent w-full placeholder:text-slate-400">
+                        <button class="bg-primary hover:bg-brand-600 text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md ml-2 shrink-0">Analyze</button>
+                    </div>
+                    
+                    <div class="mt-8 relative z-10">
+                        <button id="btn-demo" class="group inline-flex items-center gap-2 text-primary font-medium hover:text-brand-600 transition-colors bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/10 hover:bg-white hover:shadow-sm">
+                            <span>Try with a random Ohio property (Demo)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Platform Benefits Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-white border-b border-slate-100">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Why Top Investors Use Rehab-AI</h2>
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto">Stop leaving money on the table. Our platform gives you the unfair advantage in a competitive market.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12 text-center">
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 mx-auto bg-green-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-green-200">
+                            <i data-lucide="piggy-bank" class="w-8 h-8 text-success"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Save 30% on Renovations</h3>
+                        <p class="text-slate-600 leading-relaxed">Spend only on what matters. We analyze hyper-local comps so you avoid over-improving properties beyond the neighborhood's maximum value ceiling.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-blue-200">
+                            <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Instant SOW Generation</h3>
+                        <p class="text-slate-600 leading-relaxed">Get a comprehensive Scope of Work to hand off to your general contractor instantly. Bypass hours of manual spreadsheet work and focus on closing deals.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-orange-200">
+                            <i data-lucide="shield-alert" class="w-8 h-8 text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Avoid Hidden Money Pits</h3>
+                        <p class="text-slate-600 leading-relaxed">Our system automatically identifies required structural and system checks so you never get caught off guard by a failing roof or foundation.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Loading View -->
+        <section id="loading-view" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-white z-10 hidden opacity-0 transition-opacity duration-300">
+            <div class="relative w-28 h-28 mb-8">
+                <div class="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center animate-pulse">
+                    <i data-lucide="cpu" class="w-10 h-10 text-primary"></i>
+                </div>
+            </div>
+            <h2 class="text-3xl font-extrabold text-primary mb-3">Analyzing Property Data...</h2>
+            <div class="text-slate-500 h-8 overflow-hidden flex items-center justify-center">
+                <div id="loading-text" class="transition-all duration-300 text-lg font-medium">Connecting to AI...</div>
+            </div>
+        </section>
+
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="absolute inset-0 w-full h-full overflow-y-auto bg-slate-50 hidden opacity-0 transition-opacity duration-500 ease-in-out pb-12">
+            <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                
+                <button id="btn-back" class="flex items-center text-slate-500 hover:text-primary mb-6 transition-colors font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Search
+                </button>
+
+                <!-- Property Overview & Top Graph -->
+                <div class="grid lg:grid-cols-12 gap-6 mb-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    
+                    <!-- 1. Subject Image -->
+                    <div class="lg:col-span-3 aspect-[4/3] rounded-xl overflow-hidden shadow-inner relative group">
+                        <img src="images/ohio_fixer_upper.png" alt="Ohio Fixer Upper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-md border border-white/10">Subject Property</div>
+                    </div>
+
+                    <!-- 2. Property Info & Metrics -->
+                    <div class="lg:col-span-4 flex flex-col justify-center border-r border-slate-100 pr-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-brand-50 text-brand-600 border border-brand-100 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">Single Family</span>
+                            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold px-2.5 py-1 rounded">3 Beds • 2 Baths • 1,450 sqft</span>
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">1234 Maple Ave</h2>
+                        <p class="text-lg text-slate-500 flex items-center mb-6 font-medium">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-1.5 text-slate-400"></i> Cleveland, OH 44113
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Current Price</p>
+                                <p class="text-xl font-bold text-slate-800">$110,000</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm transition-colors duration-500" id="metric-rehab">
+                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Est. Rehab</p>
+                                <p class="text-xl font-bold text-slate-800" id="val-rehab">$38,500</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-blue-50 border border-blue-100">
+                                <p class="text-xs font-bold text-blue-500 uppercase tracking-wider mb-1">Projected ARV</p>
+                                <p class="text-xl font-bold text-blue-900">$195,000</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-green-50 border border-green-200 relative overflow-hidden group transition-all duration-500" id="metric-profit">
+                                <p class="text-xs font-bold text-green-700 uppercase tracking-wider mb-1 relative z-10">Net Profit</p>
+                                <p class="text-xl font-extrabold text-success relative z-10" id="val-profit">$46,500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Estimated Financials Chart -->
+                    <div class="lg:col-span-5 flex flex-col justify-center pl-2">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-lg font-bold text-slate-800 flex items-center">
+                                <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-primary"></i> Estimated Financials
+                            </h3>
+                            <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded" id="chart-status-badge">First Glance Model</span>
+                        </div>
+                        <div class="h-48 w-full relative">
+                            <canvas id="main-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comps Section -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-hidden">
+                    <button id="btn-comps-toggle" class="w-full px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100 transition-colors border-b border-slate-200">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="map" class="w-5 h-5 text-primary"></i>
+                            <h3 class="font-bold text-slate-800 text-lg">Comparable Assets (COMPS)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded ml-2 border border-blue-200">3 properties found</span>
+                        </div>
+                        <i data-lucide="chevron-down" id="comps-chevron" class="w-5 h-5 text-slate-500 transition-transform duration-300"></i>
+                    </button>
+                    
+                    <div id="comps-content" class="hidden">
+                        <!-- Carousel Container -->
+                        <div class="p-6 overflow-x-auto scroll-smooth" style="scrollbar-width: thin;">
+                            <div class="flex gap-6 min-w-max pb-2" id="comps-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs Selector -->
+                <div class="flex border-b border-slate-200 mb-8 gap-8 px-2">
+                    <button id="tab-glance" class="pb-4 border-b-4 border-primary text-primary font-bold text-xl transition-colors">First Glance Analysis</button>
+                    <button id="tab-inspection" class="pb-4 border-b-4 border-transparent text-slate-500 font-medium text-xl hover:text-slate-800 transition-colors flex items-center">
+                        Inspection-Based Analysis
+                        <span class="ml-2 bg-orange-100 text-orange-800 text-xs px-2 py-0.5 rounded-full font-bold">New Data</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content: First Glance -->
+                <div id="view-glance" class="grid lg:grid-cols-2 gap-8 animate-fade-in">
+                    <!-- Left: Cosmetic Analysis (Comprehensive) -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center">
+                                <div class="bg-blue-50 p-2 rounded-lg mr-3">
+                                    <i data-lucide="image" class="w-5 h-5 text-primary"></i>
+                                </div>
+                                Aesthetic & Finish Analysis
+                            </h3>
+                            <p class="text-sm text-slate-500 mb-6">Assessed via property images and listing description against local top-selling comparables.</p>
+                            
+                            <ul class="space-y-4" id="glance-cosmetic">
+                                <!-- JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Structural / Systems (Cannot be assessed) -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 opacity-95">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center">
+                                <div class="bg-orange-50 p-2 rounded-lg mr-3">
+                                    <i data-lucide="shield-question" class="w-5 h-5 text-orange-600"></i>
+                                </div>
+                                Structural & System Baseline
+                            </h3>
+                            <p class="text-sm text-slate-500 mb-6 border-l-4 border-orange-400 pl-3">
+                                These critical components cannot be accurately evaluated based on photos alone. A physical inspection is strictly required. Maintaining these is mandatory for full property value.
+                            </p>
+                            
+                            <ul class="space-y-4" id="glance-structural">
+                                <!-- JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Inspection -->
+                <div id="view-inspection" class="hidden grid lg:grid-cols-2 gap-8 animate-fade-in">
+                    <!-- Left: Structural Findings -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 border-t-4 border-t-orange-500">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center">
+                                <div class="bg-orange-50 p-2 rounded-lg mr-3">
+                                    <i data-lucide="file-search" class="w-5 h-5 text-orange-600"></i>
+                                </div>
+                                Inspection Report Findings
+                            </h3>
+                            <p class="text-sm text-slate-500 mb-6">Results from deep PDF parsing of the physical inspection. Highlights critical must-fix items.</p>
+                            
+                            <div class="border-2 border-dashed border-success/30 bg-green-50/30 rounded-xl p-4 text-center mb-6">
+                                <div class="flex items-center justify-center gap-2">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-success"></i>
+                                    <p class="font-bold text-slate-700 text-sm">1234_Maple_Inspection.pdf successfully parsed</p>
+                                </div>
+                            </div>
+                            
+                            <ul class="space-y-4" id="inspection-results">
+                                <!-- JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Summary & Export -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                            <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                                <div class="bg-primary/10 p-2 rounded-lg mr-3">
+                                    <i data-lucide="clipboard-list" class="w-5 h-5 text-primary"></i>
+                                </div>
+                                Execution Summary
+                            </h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                                    <span class="font-medium text-slate-600">Total Aesthetic Cost</span>
+                                    <span class="font-bold text-slate-800" id="sum-cosmetic">$0</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                                    <span class="font-medium text-slate-600">Total Structural Cost</span>
+                                    <span class="font-bold text-orange-600" id="sum-inspection">$0</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-slate-800 rounded-lg text-white">
+                                    <span class="font-bold text-lg">Final Rehab Budget</span>
+                                    <span class="font-extrabold text-xl text-success" id="sum-total">$0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4 border-t border-slate-100">
+                                <button class="w-full bg-primary hover:bg-brand-600 text-white font-bold py-4 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group text-lg">
+                                    <i data-lucide="file-down" class="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300"></i>
+                                    Export Full Scope of Work (PDF)
+                                </button>
+                                <p class="text-center text-xs text-slate-400 mt-3">Generates an itemized materials & labor list for your GC.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
