@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const landingView = document.getElementById('landing-view');
     const loadingView = document.getElementById('loading-view');
     const dashboardView = document.getElementById('dashboard-view');
+    const dealRadarView = document.getElementById('deal-radar-view');
+    const navDealRadar = document.getElementById('nav-deal-radar');
     const btnDemo = document.getElementById('btn-demo');
     const btnBack = document.getElementById('btn-back');
     const loadingText = document.getElementById('loading-text');
@@ -404,11 +406,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 500);
     });
 
+    navDealRadar.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Hide other views
+        landingView.classList.add('hidden', 'opacity-0');
+        landingView.classList.remove('opacity-100');
+        dashboardView.classList.add('hidden', 'opacity-0');
+        dashboardView.classList.remove('opacity-100');
+        
+        // Show Deal Radar View
+        dealRadarView.classList.remove('hidden');
+        void dealRadarView.offsetWidth;
+        dealRadarView.classList.remove('opacity-0');
+        dealRadarView.classList.add('opacity-100');
+    });
+
+    // Optional: Clicking the logo returns to landing
+    const logoArea = document.querySelector('header .gap-2');
+    if (logoArea) {
+        logoArea.classList.add('cursor-pointer');
+        logoArea.addEventListener('click', () => {
+            dealRadarView.classList.add('hidden', 'opacity-0');
+            dealRadarView.classList.remove('opacity-100');
+            dashboardView.classList.add('hidden', 'opacity-0');
+            dashboardView.classList.remove('opacity-100');
+            
+            landingView.classList.remove('hidden');
+            void landingView.offsetWidth;
+            landingView.classList.remove('opacity-0');
+            landingView.classList.add('opacity-100');
+        });
+    }
+
     // Comps Data & Logic
     const compsData = [
-        { address: "1248 Maple Ave", image: "images/comp_1.png", distance: "0.1 mi", sqft: "1,480", beds: 3, baths: 2, price: "$195,000", match: "98% Match" },
-        { address: "1302 Oak St", image: "images/comp_2.png", distance: "0.3 mi", sqft: "1,510", beds: 3, baths: 2, price: "$189,000", match: "92% Match" },
-        { address: "1190 Pine Rd", image: "images/comp_3.png", distance: "0.8 mi", sqft: "1,420", beds: 3, baths: 1.5, price: "$175,000", match: "85% Match" }
+        { address: "2604 Valdez St", image: "images/comp_1.png", distance: "0.2 mi", sqft: "1,210", beds: 3, baths: 2, price: "$280,000", match: "96% Match" },
+        { address: "6009 Clovis St", image: "images/comp_2.png", distance: "0.1 mi", sqft: "1,180", beds: 3, baths: 2, price: "$272,500", match: "94% Match" },
+        { address: "2707 Kemp St", image: "images/comp_3.png", distance: "0.3 mi", sqft: "1,240", beds: 3, baths: 1.5, price: "$265,000", match: "88% Match" }
     ];
 
     const compsList = document.getElementById('comps-list');
