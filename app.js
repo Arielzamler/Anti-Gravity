@@ -459,11 +459,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Gallery Logic
     const subjectImages = [
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+        "images/subject main.webp",
+        "images/subject 2.webp",
+        "images/subject 3.webp",
+        "images/subject 4.webp",
+        "images/subject 5.webp",
+        "images/subject 6.webp",
+        "images/subject 7.webp",
+        "images/subject 8.webp",
+        "images/subject 9.webp",
+        "images/subject 10.webp",
+        "images/subjcet 11.webp",
+        "images/subjcet 12.webp"
     ];
     let currentGalleryIndex = 0;
 
