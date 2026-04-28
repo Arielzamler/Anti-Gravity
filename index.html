@@ -74,8 +74,8 @@
                 <a href="#" id="nav-analyze-deal" class="nav-item text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1.5 transition-colors"><i data-lucide="bar-chart-2" class="w-4 h-4"></i> Analyze a Deal</a>
                 <a href="#" id="nav-deal-radar" class="nav-item hover:text-primary transition-colors flex items-center gap-1.5 pb-1 border-b-2 border-transparent"><i data-lucide="map" class="w-4 h-4"></i> Deal Radar</a>
                 <a href="#" id="nav-how-it-works" class="nav-item hover:text-primary transition-colors flex items-center gap-1.5 pb-1 border-b-2 border-transparent"><i data-lucide="info" class="w-4 h-4"></i> How it works</a>
-                <a href="#" class="hover:text-primary transition-colors">Pricing</a>
-                <a href="#" class="hover:text-primary transition-colors">Contact</a>
+                <a href="#" class="text-slate-400 cursor-not-allowed pointer-events-none opacity-60">Pricing</a>
+                <a href="#" id="nav-contact" class="nav-item hover:text-primary transition-colors flex items-center gap-1.5 pb-1 border-b-2 border-transparent"><i data-lucide="mail" class="w-4 h-4"></i> Contact</a>
             </nav>
             <div>
                 <button class="text-primary font-medium px-4 py-2 hover:bg-slate-50 rounded-lg transition-colors mr-2">Login</button>
@@ -159,16 +159,20 @@
                         </div>
                     </div>
 
-                    <div class="max-w-2xl mx-auto bg-white p-2 rounded-2xl shadow-xl flex items-center border border-slate-100 relative z-10 transition-transform hover:scale-[1.02] duration-300">
+                    <div class="max-w-2xl mx-auto bg-slate-100 p-2 rounded-2xl shadow-md flex items-center border border-slate-200 relative z-10">
                         <i data-lucide="search" class="text-slate-400 ml-4 mr-2 w-6 h-6"></i>
-                        <input type="text" placeholder="Paste a Zillow/Redfin link or enter address (Texas only)..." class="flex-grow py-3 px-2 outline-none text-lg text-slate-700 bg-transparent w-full placeholder:text-slate-400">
-                        <button class="bg-primary hover:bg-brand-600 text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md ml-2 shrink-0">Analyze</button>
+                        <input disabled type="text" placeholder="Paste a Zillow/Redfin link or enter address (Currently Disabled)..." class="flex-grow py-3 px-2 outline-none text-lg text-slate-400 bg-transparent w-full placeholder:text-slate-400 cursor-not-allowed">
+                        <button disabled class="bg-slate-300 text-slate-500 font-semibold py-3 px-8 rounded-xl ml-2 shrink-0 cursor-not-allowed">Analyze</button>
                     </div>
+                    <p class="text-sm font-medium text-slate-500 mt-2 z-10 relative">Note: Custom link analysis is temporarily unavailable.</p>
                     
-                    <div class="mt-8 relative z-10">
-                        <button id="btn-demo" class="group inline-flex items-center gap-2 text-primary font-medium hover:text-brand-600 transition-colors bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/10 hover:bg-white hover:shadow-sm">
-                            <span>Try with a random Texas property (Demo)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    <div class="mt-8 relative z-10 flex flex-col items-center">
+                        <p class="text-sm font-bold text-slate-600 mb-2 uppercase tracking-widest">See it in action now</p>
+                        <button id="btn-demo" class="group relative inline-flex items-center justify-center gap-3 text-white font-bold hover:text-white transition-all bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:shadow-[0_0_40px_rgba(6,182,212,0.8)] hover:-translate-y-1 transform text-xl overflow-hidden">
+                            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                            <i data-lucide="play-circle" class="w-6 h-6 relative z-10 fill-cyan-400/20 stroke-white"></i>
+                            <span class="relative z-10">Try with a random Texas property</span>
+                            <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform relative z-10"></i>
                         </button>
                     </div>
                 </div>
@@ -305,10 +309,10 @@
                             <h3 class="font-bold text-slate-800 text-lg">Comparable Assets (COMPS)</h3>
                             <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded ml-2 border border-blue-200">3 properties found</span>
                         </div>
-                        <i data-lucide="chevron-down" id="comps-chevron" class="w-5 h-5 text-slate-500 transition-transform duration-300"></i>
+                        <i data-lucide="chevron-down" id="comps-chevron" class="w-5 h-5 text-slate-500 transition-transform duration-300 rotate-180"></i>
                     </button>
                     
-                    <div id="comps-content" class="hidden">
+                    <div id="comps-content" class="">
                         <!-- Carousel Container -->
                         <div class="p-6 overflow-x-auto scroll-smooth" style="scrollbar-width: thin;">
                             <div class="flex gap-6 min-w-max pb-2" id="comps-list">
@@ -569,7 +573,7 @@
                             <div class="text-slate-400 text-xs font-medium">Projected ARV</div>
                             <div class="text-white font-bold text-sm" id="prop-modal-arv">$275,000</div>
                         </div>
-                        <button class="w-full mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg transition-colors shadow-[0_0_15px_rgba(8,145,178,0.4)] text-sm">View Full SOW Analysis</button>
+                        <button id="btn-view-sow" class="w-full mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg transition-colors shadow-[0_0_15px_rgba(8,145,178,0.4)] text-sm">View Full SOW Analysis</button>
                     </div>
                 </div>
             </div>
@@ -619,7 +623,7 @@
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-white mb-4">Stop guessing on rehab costs.</h2>
                         <p class="text-slate-400 text-lg mb-6 leading-relaxed">Whether you are wholesaling, flipping, or buying rentals, estimating repair costs accurately is the hardest part of real estate investing. Rehab-AI gives you a contractor in your pocket.</p>
-                        <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(8,145,178,0.4)] transition-all">Start Analyzing Free</button>
+                        <button id="btn-start-analyzing" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(8,145,178,0.4)] transition-all">Start Analyzing Free</button>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
                         <div class="grid grid-cols-2 gap-4 w-full">
@@ -638,6 +642,57 @@
                             <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center">
                                 <div class="text-4xl font-extrabold text-white mb-1">50</div>
                                 <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">States Covered</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact View -->
+        <section id="contact-view" class="absolute inset-0 w-full h-full overflow-y-auto bg-slate-50 hidden opacity-0 transition-opacity duration-500 ease-in-out">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 bg-slate-100 p-10 flex flex-col items-center justify-center border-r border-slate-200 relative overflow-hidden">
+                            <!-- Background decoration -->
+                            <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                            
+                            <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 relative z-10">
+                                <img src="images/DSC04575ג (1).jpg" alt="Ariel Zamlerr" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-slate-800 mb-1 relative z-10">Ariel Zamlerr</h3>
+                            <p class="text-primary font-bold mb-8 relative z-10">Co-Founder, Rehab-AI</p>
+                            
+                            <div class="w-full space-y-4 relative z-10">
+                                <a href="mailto:ariel.zamlerr@gmail.com" class="flex items-center gap-4 text-slate-600 hover:text-primary transition-all hover:-translate-y-1 bg-white p-4 rounded-xl shadow-sm border border-slate-100 group">
+                                    <div class="bg-blue-50 p-2.5 rounded-lg group-hover:bg-blue-100 transition-colors">
+                                        <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                                    </div>
+                                    <span class="font-bold">ariel.zamlerr@gmail.com</span>
+                                </a>
+                                <a href="tel:+972549792816" class="flex items-center gap-4 text-slate-600 hover:text-success transition-all hover:-translate-y-1 bg-white p-4 rounded-xl shadow-sm border border-slate-100 group">
+                                    <div class="bg-green-50 p-2.5 rounded-lg group-hover:bg-green-100 transition-colors">
+                                        <i data-lucide="phone" class="w-5 h-5 text-success"></i>
+                                    </div>
+                                    <span class="font-bold">+972 54-979-2816</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-10 md:p-14 flex flex-col justify-center bg-white relative">
+                            <div class="inline-block px-3 py-1 bg-brand-50 text-brand-600 font-bold text-sm rounded-full mb-4 w-fit border border-brand-100">About Us</div>
+                            <h2 class="text-4xl font-extrabold text-slate-900 mb-8">Data Professionals Building for <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-500">Real Estate</span></h2>
+                            <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
+                                <p>
+                                    Hi! Me and my partner are data professionals working in high-tech companies and we're deeply interested in real estate investing in the United States.
+                                </p>
+                                <p>
+                                    We built Rehab-AI because we want to make the rehab process smoother and more profitable. By accurately analyzing data of nearby properties, we can project the best rehab components and help investors make 100% data-driven decisions instead of relying on gut feelings.
+                                </p>
+                                <p class="font-bold text-slate-800 bg-slate-50 p-5 rounded-xl border border-slate-100 shadow-sm mt-4">
+                                    Whether you're looking to partner, use our platform, or just talk data and real estate—we'd love to hear from you.
+                                </p>
                             </div>
                         </div>
                     </div>

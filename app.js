@@ -11,12 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const dashboardView = document.getElementById('dashboard-view');
     const dealRadarView = document.getElementById('deal-radar-view');
     const howItWorksView = document.getElementById('how-it-works-view');
+    const contactView = document.getElementById('contact-view');
     
     const navAnalyzeDeal = document.getElementById('nav-analyze-deal');
     const navDealRadar = document.getElementById('nav-deal-radar');
     const navHowItWorks = document.getElementById('nav-how-it-works');
+    const navContact = document.getElementById('nav-contact');
     
     const btnDemo = document.getElementById('btn-demo');
+    const btnStartAnalyzing = document.getElementById('btn-start-analyzing');
+    const btnViewSow = document.getElementById('btn-view-sow');
     const btnBack = document.getElementById('btn-back');
     const loadingText = document.getElementById('loading-text');
 
@@ -345,11 +349,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Navigation Transitions
-    btnDemo.addEventListener('click', () => {
+    const startDemoAnalysis = () => {
         landingView.classList.add('opacity-0');
+        dealRadarView.classList.add('opacity-0');
+        howItWorksView.classList.add('opacity-0');
+        contactView.classList.add('opacity-0');
         
         setTimeout(() => {
             landingView.classList.add('hidden');
+            dealRadarView.classList.add('hidden');
+            howItWorksView.classList.add('hidden');
+            contactView.classList.add('hidden');
+            
             loadingView.classList.remove('hidden');
             void loadingView.offsetWidth;
             loadingView.classList.remove('opacity-0');
@@ -388,11 +399,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     renderLists();
                     updateTopMetrics(false);
+                    setActiveNav('nav-analyze-deal');
                 }, 300);
             }, 2500);
 
         }, 500);
-    });
+    };
+
+    if (btnDemo) btnDemo.addEventListener('click', startDemoAnalysis);
+    if (btnStartAnalyzing) btnStartAnalyzing.addEventListener('click', startDemoAnalysis);
+    if (btnViewSow) btnViewSow.addEventListener('click', startDemoAnalysis);
 
     btnBack.addEventListener('click', () => {
         dashboardView.classList.remove('opacity-100');
@@ -435,6 +451,8 @@ document.addEventListener("DOMContentLoaded", () => {
             howItWorksView.classList.remove('opacity-100');
             dashboardView.classList.add('hidden', 'opacity-0');
             dashboardView.classList.remove('opacity-100');
+            contactView.classList.add('hidden', 'opacity-0');
+            contactView.classList.remove('opacity-100');
             
             // Show landing view
             landingView.classList.remove('hidden');
@@ -456,6 +474,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dashboardView.classList.remove('opacity-100');
             howItWorksView.classList.add('hidden', 'opacity-0');
             howItWorksView.classList.remove('opacity-100');
+            contactView.classList.add('hidden', 'opacity-0');
+            contactView.classList.remove('opacity-100');
             
             // Show Deal Radar View
             dealRadarView.classList.remove('hidden');
@@ -485,12 +505,37 @@ document.addEventListener("DOMContentLoaded", () => {
             dashboardView.classList.remove('opacity-100');
             dealRadarView.classList.add('hidden', 'opacity-0');
             dealRadarView.classList.remove('opacity-100');
+            contactView.classList.add('hidden', 'opacity-0');
+            contactView.classList.remove('opacity-100');
             
             // Show How It Works View
             howItWorksView.classList.remove('hidden');
             void howItWorksView.offsetWidth;
             howItWorksView.classList.remove('opacity-0');
             howItWorksView.classList.add('opacity-100');
+        });
+    }
+
+    if (navContact) {
+        navContact.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveNav('nav-contact');
+            
+            // Hide other views
+            landingView.classList.add('hidden', 'opacity-0');
+            landingView.classList.remove('opacity-100');
+            dashboardView.classList.add('hidden', 'opacity-0');
+            dashboardView.classList.remove('opacity-100');
+            dealRadarView.classList.add('hidden', 'opacity-0');
+            dealRadarView.classList.remove('opacity-100');
+            howItWorksView.classList.add('hidden', 'opacity-0');
+            howItWorksView.classList.remove('opacity-100');
+            
+            // Show Contact View
+            contactView.classList.remove('hidden');
+            void contactView.offsetWidth;
+            contactView.classList.remove('opacity-0');
+            contactView.classList.add('opacity-100');
         });
     }
 
@@ -507,6 +552,8 @@ document.addEventListener("DOMContentLoaded", () => {
             howItWorksView.classList.remove('opacity-100');
             dashboardView.classList.add('hidden', 'opacity-0');
             dashboardView.classList.remove('opacity-100');
+            contactView.classList.add('hidden', 'opacity-0');
+            contactView.classList.remove('opacity-100');
             
             landingView.classList.remove('hidden');
             void landingView.offsetWidth;
